@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/transit.js"></script>
+        <script src="js/easing.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+
+        <script type="text/javascript" src="js/jquery.touch.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/dom-drag.js"></script>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+        <title>MBJ STUDIO</title>
+    </head>
+
+<body>
+	<audio  autoplay="true" preload="auto">
+	   		<source src="msc/inicio.mp3" type="">
+	</audio>
+	<div  id="intro"  style="display: none1; background:url('img/madera.png');position: absolute;width: 100%;height: 100%;overflow: hidden;background-size: 100% 100%;"class="contenedor">
+		<p class="intro">MBJ ESTUDIO PRESENTA...</p>
+		<img  src="img/titulo.png" style="opacity: 0;width:100%; height: auto;max-width:800px;" class="centrar aparecer" >
+		<img  style="opacity: 0;"class="happy aparecer" src="img/happy.png">
+		<img style="opacity: 0;" class="face aparecer" src="img/face.png">
+	</div>
+	<!-- MENU--->
+	<div  id="menu-principal" style="display: none;background:url('img/madera.png');position: absolute;width: 100%;height: 100%;overflow: hidden;background-size: 100% 100vh;" class="contenedor">     
+		<img src="img/titulo.png" style="width:100%; top:10vh; height: auto;max-width:800px;"  class="centrar_h" >
+		<a id="bt_multi"  class="btn3 hover animate__animated animate__backInDown animate__delay-6s ">MULTIJUGADOR</a>
+		<a id="bt_iniciar" class="btn1 hover animate__animated animate__backInLeft animate__delay-6s  ">COMENZAR</a>
+		<a id="bt_reglas" class="btn2 hover animate__animated animate__backInUp animate__delay-6s ">REGLAS</a>
+		<!--<a id="bt_reglas" class="btn4 hover">MIS PREGUNTAS</a>-->
+		<img class="happy animate__animated animate__fadeInBottomLeft animate__delay-6s  " src="img/happy.png">
+		<img class="face animate__animated animate__fadeInBottomRight animate__delay-6s " src="img/face.png">
+	</div>
+<!-- REGLAS--->
+<div id="reglas" style="width: 100%; height: 100%;background:url('img/madera.png');display: none; position: absolute;background-size:100% 100%;">
+		<h2 class="textcenter" style="color: var(--color3);">MBJSTUDIO</h2>
+		
+
+		<div id="trol" class="reglas centrar">
+			<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;color:rgba(0, 0, 0, 0.8);">Reglas!</div>
+				<br>
+				<div class="form centrar_h ">
+					<div class="centrar" style="width: 90%;height: 90%;overflow-y: auto;color:rgba(0, 0, 0, 0.8);">
+					1. Asegúrate que sean un grupo de 3o más participantes y que 	todos tengan bebida.<br><br>
+					2. Pongan el teléfono en el centro, van a ir pulsando 	siguiente.<br><br>
+					3. Cada carta contiene una pregunta para que contestes votando 	por alguien del grupo.<br><br>
+					4. Vas a votar apuntando con tu dedo.<br><br>
+					5. Quien reciba más votos ese turno, le da un trago a su 	bebida.<br><br>
+					6. Quien terminen más pedo... LO SACAN del grupo de amigos POR RARO<br><br>
+					</div>
+            	</div>
+            <!--<div class="atras"> </div>	-->
+		</div>
+
+
+		<div id="menu">
+			<img id="bt_home1" src="img/home.png" class="centrar_v hover" style="height: 34%; left: 6%;"/>	
+		</div>
+		
+</div>
+<!-- MULTI JUGADOR--->
+<div id="multi" style="width: 100%; height: 100%; background:url('img/madera.png');background-size: 100% 100% ;display: none; position: absolute;">
+		<h2 class="textcenter" style="color: var(--color3);">MBJSTUDIO</h2>
+		<div  class="reglas centrar">
+			<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;color:rgba(0, 0, 0, 0.8);">Multijugador!</div>
+			<br>
+				<div class="form centrar_h">
+					<div class="centrar" style="width: 90%;">
+					<h2 class="textcenter">Iniciar Partida</h2>
+					<input class="input"  type="submit" value="Crear Sala">
+					<h2 class="textcenter">Ingresar a una Sala</h2>
+            	    <input class="input"  type="text" name="" id="" 	placeholder="Nombre-Sala">
+            	    <input class="input"  type="submit" value="COMENZAR">
+            	    </div>
+            	</div>
+		</div>
+
+		<div id="menu">
+			<img id="bt_home2" src="img/home.png" class="centrar_v hover" style="height: 34%; left: 6%;"/>	
+		</div>
+		
+	</div>
+<!-- Cartas--->
+	<div id="cartas" style="position: absolute; width: 100%; height: 100%; overflow: hidden; background:url('img/madera.png'); display: none;background-size: 100% 100%;">
+		<!--//////////////// Hoja1 ////////////////////-->	
+		<div id="hoja1" class="hojas2 centrar_v" style="display: none1;"> 
+			<div class="instruccion">¡Responde!</div>
+			
+				<div class="cuerpo2">
+					<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			  	 <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore de una/un stripper?</span>
+					</div>
+			 	  </div>
+			   </div>
+			<div id="atras1" class="atras"> </div>            
+			
+		</div>
+		<!--//////////////// Hoja2 ////////////////////-->
+		<div id="hoja2" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>	
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a cambiarser de sexo?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras2" class="atras">
+			</div>  
+		</div>
+
+		<!--//////////////// Hoja3 ////////////////////-->
+		
+		<div id="hoja3" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore de su mejor amigo/a?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras3" class="atras">
+			</div>
+		</div>
+		<!--//////////////// Hoja4 ////////////////////-->
+		
+		<div id="hoja4" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se ría en el momento equivocado?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras4" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja5 ////////////////////-->
+		<div id="hoja5" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;text-align: justify;">¿Quién es más probable que olvide donde aparcó el coche?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras5" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja6 ////////////////////-->
+		<div id="hoja6" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">
+						Si la ignoracia es una bendición
+						<br><br>
+					   ¿Quién es el más bendecido?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras6" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja7 ////////////////////-->
+		<div id="hoja7" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se duerma rezando?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras7" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja8 ////////////////////-->
+		<div id="hoja8" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a tapar un baño ajeno?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras8" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja9////////////////////-->
+		<div id="hoja9" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que finja una enfermedad?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras9" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja10////////////////////-->
+		<div id="hoja10" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se quede calvo?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras10" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja11 ////////////////////-->
+		<div id="hoja11" class="hojas2" style="display: none;">             
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;"> ¿Quién es más probable a regresar con su ex</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras11" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja12 ////////////////////-->
+		<div id="hoja12" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a llorar viendo una película?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras12" class="atras">
+			   
+			</div>  
+		</div>
+		<!--//////////////// Hoja13 ////////////////////-->
+		<div id="hoja13" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					  <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore del novio/novia de su mejor amigo?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras13" class="atras">
+				
+			</div>
+		</div>
+		<!--//////////////// Hoja14 ////////////////////-->
+		<div id="hoja14" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						 <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que hackee la red social de su ex?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras14" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja15 ////////////////////-->
+		<div id="hoja15" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que sea engañad@ por su pareja?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras15" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja16 ////////////////////-->
+		<div id="hoja16" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a perdonar una infidelidad?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras16" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja17 ////////////////////-->
+		<div id="hoja17" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a ser infiel?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras17" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja18 ////////////////////-->
+		<div id="hoja18" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore antes?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras18" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja19////////////////////-->
+		<div id="hoja19" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que tenga problemas legales?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras19" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja20////////////////////-->
+		<div id="hoja20" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que sea soltero para siempre?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras20" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja21 ////////////////////-->
+		<div id="hoja21" class="hojas2" style="display: none;">           
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se mantenga fiel y leal a su pareja?</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras21" class="atras">
+				
+			</div> 
+		</div>
+		<!--//////////////// Hoja22 ////////////////////-->
+		<div id="hoja22" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a escribierle a su ex en una peda?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras22" class="atras">
+			   
+			</div>  
+		</div>
+		<!--//////////////// Hoja23 ////////////////////-->
+		<div id="hoja23" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a besar a la pareja de su amig@ por accidente?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras23" class="atras">
+				
+			</div>
+		</div>
+		<!--//////////////// Hoja24 ////////////////////-->
+		<div id="hoja24" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>	
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a llorar en este momento?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras24" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja25 ////////////////////-->
+		<div id="hoja25" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a enojarse por las razones más estúpidas?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras25" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja26 ////////////////////-->
+		<div id="hoja26" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">
+						¿Quién es más probable a sacarse la lotería y acabarse todo el dinero en un año?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras26" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja27 ////////////////////-->
+		<div id="hoja27" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que invente algo útil?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras27" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja28 ////////////////////-->
+		<div id="hoja28" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que sea el más cariñoso?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras28" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja29////////////////////-->
+		<div id="hoja29" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable de casarse sin amor?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras29" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja30////////////////////-->
+		<div id="hoja30" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a vender fotos de sus pies en internet?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras30" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja31 ////////////////////-->
+		<div id="hoja31" class="hojas2" style="display: none;">            
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a no podrer guardar un secreto por solo 30 minutos?</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras31" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja32 ////////////////////-->
+		<div id="hoja32" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es menos probable a ganar un premio Nobel?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras32" class="atras">
+			   
+			</div>  
+		</div>
+		<!--//////////////// Hoja33 ////////////////////-->		
+		<div id="hoja33" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					 <span style="text-transform: uppercase;text-align: justify;"> ¿Quién es más probable a que sea la reina del drama?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras33" class="atras">
+				
+			</div>
+		</div>
+		<!--//////////////// Hoja34 ////////////////////-->
+		<div id="hoja34" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						 <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable de fingir su muerte?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras34" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja35 ////////////////////-->
+		<div id="hoja35" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore de un maestro?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras35" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja36 ////////////////////-->
+		<div id="hoja36" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">
+					¿Quién es más probable que sea un buen padre/madre?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras36" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja37 ////////////////////-->
+		<div id="hoja37" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se enamore de una/un stripper?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras37" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja38 ////////////////////-->
+		<div id="hoja38" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable de comerse una uña del pie?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras38" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja39////////////////////-->
+		<div id="hoja39" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que compre el mismo regalo más de una vez?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras39" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja40////////////////////-->
+		<div id="hoja40" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que vea una película dos veces con diferentes chic@s?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras40" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja41 ////////////////////-->	
+		<div id="hoja41" class="hojas2" style="display: none;">
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que llegue tarde a la graduación?</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras41" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja42 ////////////////////-->
+		<div id="hoja42" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable  que vuelva a vivir con sus padres?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras42" class="atras">
+			   
+			</div>  
+		</div>
+		<!--//////////////// Hoja43 ////////////////////-->		
+		<div id="hoja43" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					  <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable de quedarse calvo?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras43" class="atras">
+				
+			</div>
+		</div>
+		<!--//////////////// Hoja44 ////////////////////-->	
+		<div id="hoja44" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						 <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que lo rechace su crush?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras44" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja45 ////////////////////-->
+		<div id="hoja45" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a pagar por sexo?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras45" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja46 ////////////////////-->
+		<div id="hoja46" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">
+					   ¿Quién es más probable a tener sexo en un lugar prohibido?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras46" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja47 ////////////////////-->
+		<div id="hoja47" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">Si todos fuéramos prostitutas,
+						<br><br>
+					¿Quién ganaría menos dinero?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras47" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja48 ////////////////////-->
+		<div id="hoja48" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a jugar con los sentimientos de alguien?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras48" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoj49////////////////////-->
+		<div id="hoja49" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién se cree fuckboy/ fuckgirl</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras49" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja50////////////////////-->
+		<div id="hoja50" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>		
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable  a buscar osos maduros en internet?</span>
+					</div>
+			   </div>
+			   </div>
+			<div id="atras50" class="atras"> </div>
+		</div>
+		 <!--//////////////// Hoja51 ////////////////////-->
+		<div id="hoja51" class="hojas2" style="display: none;">            
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a dejar a su pareja por un millón de dolares</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras51" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja52 ////////////////////-->
+		<div id="hoja52" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					   <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a tomarse nudes en una baño publico?</span>
+					</div>
+			   </div>
+			</div>
+
+			<div id="atras52" class="atras">
+			   
+			</div>  
+		</div>
+		<!--//////////////// Hoja53 ////////////////////-->		
+		<div id="hoja53" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+					  <span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable a robar calzones de su crush?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras53" class="atras">
+				
+			</div>
+		</div>
+		<!--//////////////// Hoja54 ////////////////////-->		
+		<div id="hoja54" class="hojas2" style="display: none;">
+			<div class="instruccion">¡Responde!</div>
+			
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						 <span style="text-transform: uppercase;text-align: justify;">¿Quién se ve que disfruta que le  chupen sus pies?</span>
+					</div>
+			   </div>
+			</div>
+			<div id="atras54" class="atras"> </div>
+		</div>
+		<!--//////////////// Hoja55 ////////////////////-->		
+		<div id="hoja55" class="hojas2" style="display: none;">
+			<div class="cuerpo2">
+				<div style="width: 100%; position: absolute; text-align: center; top:0%; font-size:2.5vh;">Responde!</div>
+			   <div class="blanco">
+					<div class="centrar" style="width: 80%; font-size: 3vh; text-align: center;">
+						<span style="text-transform: uppercase;text-align: justify;">¿Quién es más probable que se convierta en millonario?</span>
+					</div>
+			   </div>
+			</div>  
+			
+			<div id="atras1" class="atras">
+
+			</div> 
+		</div>
+		<!--//////////////// Boton////////////////////-->
+		<div id="avanza" class="boton" style="bottom: 3%;">SIGUIENTE
+			<div class="boton_black">
+				<img src="img/avanza.png" class="centrar" style="height: 50%;"/>
+			</div>
+		</div>
+		 <!--//////////////// Header ////////////////////-->
+		<div id="menu">
+			<img id="bt_home" src="img/home.png" class="centrar_v" style="height: 34%; left: 6%;color: var(--color3);"/>
+			<img id="bt_regresa" src="img/regresa.png" class="centrar_v" style="height: 28%; left: 18%; display: none;"/>
+			
+			<div id="titulo" class="centrar" style="color: white;white-space: nowrap"><span class="borrar">MBJ STUDIO - </span>Carta <span id="numero_pagina">1</span></div>
+			<img id="bt_musica" src="img/musica.png" class="centrar_v" style="height: 28%; right: 6%;"/>
+			<img id="bt_mensaje" src="img/mensaje.svg" class="centrar_v" style="height: 32%; right: 16%;"/>
+		</div>
+
+		<div id="negro" style="position: absolute; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: none;">
+			<img id="bt_musica" src="img/cerrar.png" style="height: 2.5vh; right: 2vh; top: 2vh; position: absolute;"/>
+		</div>
+
+		
+
+		<iframe id="musica"width="85vw" height="75vh" src="https://www.youtube.com/embed/ripRn9OLrOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="centrar" style="opacity: 1;display:inline-block; border-radius:10px; width: 85vw; height: 75vh; visibility: hidden;"></iframe>
+		<iframe id="mensaje" width="85vw" height="75vh" src="https://firechat-ab60c.web.app/" class="centrar" style="opacity: 1;display:inline-block; border-radius:10px; width: 85vw; height: 75vh; visibility: hidden;background: white;"></iframe>
+
+	</div>
+
+	<script>
+		setTimeout(function(){
+		$("#menu-principal").fadeIn()
+		},5000);
+
+		$('#bt_home').click(function(){
+			$('#cartas').fadeOut()
+		})
+
+		$('#bt_home1').click(function(){
+			$('#reglas').fadeOut()
+		})
+		$('#bt_home2').click(function(){
+			$('#multi').fadeOut()
+		})
+		
+		$('#bt_reglas').click(function(){
+			$('#reglas').fadeIn()
+		})
+
+		$('#bt_multi').click(function(){
+			$('#multi').fadeIn()
+		})
+
+		
+
+
+		var uno = 0
+		$('#bt_iniciar, #bt_iniciar2').click(function(){
+			$('#reglas').fadeOut()
+			$('#cartas').fadeIn()
+			if(uno==0){
+				$('.hojas2').css("rotateY", "180deg")
+				$('#hoja1').delay('500').animate({rotateY:"0deg"}, 1000)
+				$('#atras1').delay('800').fadeOut(0)
+				uno=1
+			}
+		})
+
+
+
+		var posicion = 1
+  
+		$('#bt_musica').click(function(){
+			$('#negro').show()
+			$('#musica').css('visibility','visible')
+		})
+		$('#bt_mensaje').click(function(){
+			$('#negro').show()
+			$('#mensaje').css('visibility','visible')
+		})
+
+		
+
+
+		$('#negro').click(function(){
+			$('#negro').hide()
+			$('#musica').css('visibility','hidden')
+			$('#mensaje').css('visibility','hidden')
+		})
+		
+		$('.boton').click(function(){
+			pasa()
+		})
+
+		
+
+		var dispositivo = "12"
+
+		function pasa(){
+			$('#hoja'+posicion).animate({marginLeft:'-120%', rotate:'-10deg'}, 400)
+			$('#hoja'+(posicion+1)).show()
+			$('#hoja'+(posicion+1)).animate({marginLeft:'120%', rotate:'10deg'}, 0)
+			$('#hoja'+(posicion+1)).animate({marginLeft:'0%', rotate:'0deg'}, 400)
+			
+			$('#hoja'+(posicion+1)).delay(200).animate({rotateY:"0deg"}, 1000)
+			$('#atras'+(posicion+1)).delay('900').fadeOut(0)
+			posicion++
+			$('#numero_pagina').html(posicion)
+			$('#bt_regresa').show()
+
+			firebase.database().ref('dispositivo/'+dispositivo).update({
+				dispositivo: dispositivo,
+				posicion: posicion
+			})
+		}
+
+		$('#bt_regresa').click(function(){
+			$('#hoja'+posicion).animate({marginLeft:'120%', rotate:'10deg'}, 400)
+			$('#hoja'+(posicion-1)).show()
+			$('#hoja'+(posicion-1)).animate({marginLeft:'-120%', rotate:'-10deg'}, 0)
+			$('#hoja'+(posicion-1)).animate({marginLeft:'0%', rotate:'0deg'}, 400)
+			posicion--
+			$('#numero_pagina').html(posicion)
+		})
+
+		
+	</script>
+
+
+  
+      
+
+
+
+
+	<audio id="_1" preload="auto">
+	   		<source src="msc/sonido.mp3" type="">
+	</audio>
+
+
+
+	<script type="text/javascript">
+		var _1=$("#_1")[0];
+		$(".hover")
+		.mouseenter(function(){
+			_1.play();
+		});
+		
+	</script> 
+
+<script>
+function disabletext(e){
+return false
+}
+function reEnable(){
+return true
+}
+document.onselectstart=new Function ("return false")
+if (window.sidebar){
+document.onmousedown=disabletext
+document.onclick=reEnable
+}
+</script>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+
+    <script>
+		var config = {
+			apiKey: "AIzaSyBK1kw3PBh6m-XfM5GFIzbHE1g4T9A9Nto",
+			authDomain: "jacoboo-146f7.firebaseapp.com",
+			databaseURL: "https://jacoboo-146f7-default-rtdb.firebaseio.com",
+			projectId: "jacoboo-146f7",
+			storageBucket: "jacoboo-146f7.appspot.com",
+			messagingSenderId: "817089181828",
+			appId: "1:817089181828:web:4d6ad92833fe27ff132ad1",
+			measurementId: "G-S1QSEJPBFR"
+		};
+		firebase.initializeApp(config);
+	</script>
+
+</body>
+</html>
